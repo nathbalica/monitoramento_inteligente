@@ -12,7 +12,7 @@ RUN pip install -r requirements.txt
 
 ADD . /mqtt/
 
-# RUN chown -R "$USER:$USER" /mqtt
-# USER echo "$USER"
+RUN chown -R nathdev:nathdev /mqtt
+USER echo nathdev
 
 WORKDIR /mqtt
