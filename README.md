@@ -28,3 +28,16 @@ Para subir é necessário rodar esse comando:
 ```bash
 docker compose up -d --build
 ```
+
+## comando para executar a api
+```bash
+python3 application.py
+```
+ - endoint para realizar o get: http://127.0.0.1:8080/get
+ - fazer a requisicao como json:
+ {
+	"mac_adress" : "<mac_name>",
+	"date_inicial" : "2022-10-26 15:32:21.000",
+	"date_final" : "2022-10-26 15:32:36.000"
+}
+    

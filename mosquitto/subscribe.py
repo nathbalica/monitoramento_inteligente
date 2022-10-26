@@ -40,7 +40,7 @@ def insert_db(payload):
         {payload['wa']}, {payload['wb']}, {payload['wc']})""")
              
     cnx = Connect("localhost", "atmos_db", "atmos", "atmos", 5432)
-    cnx.execute_query(query)
+    cnx.insert(query)
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):

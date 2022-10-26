@@ -1,3 +1,4 @@
 paho-mqtt==1.6.1
 psycopg2==2.9.5
 pytz
+flask
