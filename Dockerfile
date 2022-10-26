@@ -16,3 +16,6 @@ RUN chown -R nathdev:nathdev /mqtt
 USER echo nathdev
 
 WORKDIR /mqtt
+
+RUN set POSTGRES_HOST at 127.0.0.1
+# CMD ["python", "manage.py", "runserver", "127.0.0.1:8000"]
