@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fzefiro.com.br%2Fcomo-e-a-estrutura-de-uma-rede-iot%2F&psig=AOvVaw2NxxmluQDhurWb5i3R4--P&ust=1666903223046000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJid6cXg_voCFQAAAAAdAAAAABAE";/>
+<img src="resources/capa-project.jpg";/>
 </p>
 
 
