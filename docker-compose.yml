@@ -2,15 +2,48 @@ version: '3.1'
 
 services:
   postgres_atmos:
+    container_name: postgres_atmos
     image: postgres
     restart: always
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     environment:
       POSTGRES_DB: atmos_db
       POSTGRES_USER: atmos
       POSTGRES_PASSWORD: atmos
-      POSTGRES_HOST: localhost
     ports:
       - 5432:5432
     volumes:
       - ./data:/var/lib/postgresql/data
+      - ./customPostgresql.conf:/etc/postgresql/postgresql.conf
       - ./create_table.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+          myApp-network:
+            aliases:
+              - postgresForMyApp
+
+  broker_mqtt:
+    container_name: broker_mqtt
+    command: python3 mosquitto/subscribe.py
+    build: .
+    depends_on:
+      - postgres_atmos
+    networks:
+      - myApp-network
+
+  flask_atmos:
+    container_name: flask_atmos
+    command: python app/app.py
+    build:
+      context: .
+    ports:
+      - 8080:5000
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres_atmos
+    networks:
+      - myApp-network
+
+networks:
+  myApp-network:
+    driver: bridge

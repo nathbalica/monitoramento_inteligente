@@ -1,21 +1,16 @@
-FROM python:3.10.0-alpine 
+#create a docker file to run the application flask
+FROM python:3.7
+#set the working directory
+COPY . /app
 
-USER root
-
-RUN mkdir mqtt
-WORKDIR /mqtt
-
-ENV PYTHONUNBUFFERED 1
-
-ADD requirements.txt /mqtt/
+WORKDIR /app
+#copy the requirements.txt file to the working directory
+COPY requirements.txt /app
+#install the requirements
 RUN pip install -r requirements.txt
+#copy the content of the local directory to the working directory
 
-ADD . /mqtt/
+#run the application and o file subscribe.py
+ENV PYTHONPATH /app
 
-RUN chown -R nathdev:nathdev /mqtt
-USER echo nathdev
-
-WORKDIR /mqtt
-
-RUN set POSTGRES_HOST at 127.0.0.1
-# CMD ["python", "manage.py", "runserver", "127.0.0.1:8000"]
+# CMD ["run.sh"]

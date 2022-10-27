@@ -39,8 +39,9 @@ def insert_db(payload):
         {payload['ia']}, {payload['ib']}, {payload['ic']},
         {payload['wa']}, {payload['wb']}, {payload['wc']})""")
              
-    cnx = Connect("localhost", "atmos_db", "atmos", "atmos", 5432)
-    cnx.insert(query)
+    cnx = Connect("postgres_atmos", "atmos_db", "atmos", "atmos", 5432)
+    print("Inserting data...")
+    cnx.insert_row(query)
 
 def subscribe(client: mqtt_client):
     def on_message(client, userdata, msg):

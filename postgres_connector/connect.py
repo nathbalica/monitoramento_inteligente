@@ -9,13 +9,13 @@ class Connect():
         self.password = password
         self.port = port
         
-    def insert(self, query):
+    def insert_row(self, query):
+        connection = psycopg2.connect(user=self.user,
+                                        password=self.password,
+                                        host=self.host,
+                                        port=self.port,
+                                        database=self.db_name)
         try:
-            connection = psycopg2.connect(user=self.user,
-                                            password=self.password,
-                                            host=self.host,
-                                            port=self.port,
-                                            database=self.db_name)
             cursor = connection.cursor()
             cursor.execute(query)
             connection.commit()
@@ -32,13 +32,12 @@ class Connect():
                 
                 
     def select(self, query):
-        try:
-            cnx = psycopg2.connect(user=self.user,
+        cnx = psycopg2.connect(user=self.user,
                                         password=self.password,
                                         host=self.host,
                                         port=self.port,
                                         database=self.db_name)
-            cursor = cnx.cursor()
+        try:
             cursor = cnx.cursor()
             cursor.execute(query)
             lista = []
